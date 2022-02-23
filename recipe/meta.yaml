@@ -1,5 +1,5 @@
 {% set name = "DBSP_DRP" %}
-{% set version = "0.9.0" %}
+{% set version = "1.0.0" %}
 {% set pypi_name = "dbsp-drp" %}
 
 package:
@@ -8,12 +8,19 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ pypi_name[0] }}/{{ pypi_name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7308095ae3709445be11b4e488d4c113b02ddd298daa8607be76e1f71e547b6f
+  sha256: 7e3dc7ba211d1305d8eaef5b8d6527a2d85cf8e26b28be550fe0dfbc0256a852
 
 build:
-  skip: True  # [win or py<38]
+  skip: true  # [win or py<38]
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
+  entry_points:
+    - dbsp_reduce = dbsp_drp.p200_redux:entrypoint
+    - dbsp_ql = dbsp_drp.quicklook:entrypoint
+    - dbsp_show = dbsp_drp.show_spectrum:entrypoint
+    - dbsp_adjust_splicing = dbsp_drp.adjust_splicing:entrypoint
+    - dbsp_splice = dbsp_drp.manual_splice:entrypoint
+    - dbsp_trim = dbsp_drp.trim:entrypoint
 
 requirements:
   host:
@@ -25,9 +32,9 @@ requirements:
     - numpy >=1.16.0
     - astropy >=4.0
     - scipy >=1.4
-    - matplotlib-base >=3.1
+    - matplotlib-base >=3.1,<3.5
     - pyside2 >=5.12
-    - pypeit ==1.4.2
+    - pypeit ==1.6.0
     - pytest >=3.0.7
     - yattag >=1.13
     - tqdm >=4.52
@@ -48,12 +55,12 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: "Automated Data Reduction Pipeline for Palomar's Double Spectrograph"
+  summary: Automated Data Reduction Pipeline for Palomar's Double Spectrograph
   description: |
     DBSP_DRP is a Data Reduction Pipeline for Palomar's workhorse spectrograph DBSP.
     It is built on top of PypeIt. DBSP_DRP automates the reduction, fluxing, telluric
     correction, and combining of the red and blue sides of one night's data.
-    
+
     It adds several GUIs to allow for easier control of your reduction:
       - select which data to reduce, and verify the correctness of your FITS headers in an editable table GUI
       - manually place traces for a sort of manually "forced" spectroscopy with the `-m` option
