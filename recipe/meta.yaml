@@ -12,7 +12,7 @@ source:
 
 build:
   skip: true  # [win or py<38]
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - dbsp_reduce = dbsp_drp.p200_redux:entrypoint
