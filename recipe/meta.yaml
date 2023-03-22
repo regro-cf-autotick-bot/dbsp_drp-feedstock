@@ -1,5 +1,5 @@
 {% set name = "DBSP_DRP" %}
-{% set version = "1.0.0" %}
+{% set version = "1.0.0.post4" %}
 {% set pypi_name = "dbsp-drp" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ pypi_name[0] }}/{{ pypi_name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7e3dc7ba211d1305d8eaef5b8d6527a2d85cf8e26b28be550fe0dfbc0256a852
+  sha256: 5451f2e058e88768c1b6bf22a8064a9be96a99c086a79fed84ddcc7f01f224b2
 
 build:
   skip: true  # [win or py<38]
