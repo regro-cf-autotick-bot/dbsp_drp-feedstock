@@ -12,7 +12,7 @@ source:
 
 build:
   skip: true  # [win or py<38]
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - dbsp_reduce = dbsp_drp.p200_redux:entrypoint
@@ -30,7 +30,7 @@ requirements:
   run:
     - python
     - numpy >=1.16.0
-    - astropy >=4.0
+    - astropy-base >=4.0
     - scipy >=1.4
     - matplotlib-base >=3.1,<3.5
     - pyside2 >=5.12
